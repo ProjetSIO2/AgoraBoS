@@ -66,9 +66,9 @@
                             </td>
                             <td>
                                 {% if notification != 'rien' and genre.identifiant == idGenreNotif %}
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i> {{ notification }}</button>
+                                    <button class="btn btn-success btn-xs" formaction="{{path('genres_afficher')}}" ><i class="fa fa-check"></i> {{ notification }}</button>
                                 {% endif %}
-                                <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="demanderModifierGenre" title="Modifier" formaction="{{path('genres_demandermodifier')}}" ><i class="fa fa-pencil"></i></button> {# Ajout formaction #}
+                                <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="demanderModifierGenre" title="Modifier" formaction="{{path('genres_demanderModifier')}}" ><i class="fa fa-pencil"></i></button> {# Ajout formaction #}
                                 <button class="btn btn-danger btn-xs" type="submit" name="cmdAction" value="supprimerGenre" title="Supprimer" formaction="{{path('genres_supprimer')}}" onclick="return confirm('Voulez-vous vraiment supprimer ce genre ?');"><i class="fa fa-trash-o "></i></button> {# Ajout formaction #}
                             </td>
                             {% else %}

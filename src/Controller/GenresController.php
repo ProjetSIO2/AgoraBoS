@@ -53,14 +53,14 @@ class GenresController extends AbstractController
     {
         $db = PdoJeux::getPdoJeux();
         if (!empty($request->request->get('txtLibGenre'))) {
-            $idGenreNotif = $db->ajouterGenre($request->request->get('txtLibGenre'), $request->request->get('lstMembre'));
+            $idGenreNotif = $db->ajouterGenre($request->request->get('txtLibGenre'), $request->request->get('lstPersonnes'));
             $notification = 'Ajouté';
         }
         return $this->afficherGenres($db, -1,  $idGenreNotif, $notification);
     }
 
     /**
-     * @Route("/genres/demandermodifier", name="genres_demandermodifier")
+     * @Route("/genres/demanderModifier", name="genres_demanderModifier")
      */
     public function demanderModifier(SessionInterface $session, Request $request)
     {
@@ -74,7 +74,7 @@ class GenresController extends AbstractController
     public function validerModifier(SessionInterface $session, Request $request)
     {
         $db = PdoJeux::getPdoJeux();
-        $db->modifierGenre($request->request->get('txtIdGenre'), $request->request->get('txtLibGenre'), $request->request->get('lstMembre'));
+        $db->modifierGenre($request->request->get('txtIdGenre'), $request->request->get('txtLibGenre'), $request->request->get('lstPersonnes'));
         return $this->afficherGenres($db, -1,  $request->request->get('txtIdGenre'), 'Modifié');
     }
 
