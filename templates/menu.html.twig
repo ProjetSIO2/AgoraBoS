@@ -1,0 +1,100 @@
+<!-- **********************************************************************************************************************************************************
+    MAIN SIDEBAR MENU
+    *********************************************************************************************************************************************************** -->
+<!--sidebar start-->
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            <p class="centered"><a href="profile.html"><img src="web/img/greece-1162816_640.jpg" class="img-circle" width="80"></a></p>
+            <h5 class="centered">MJC Agora</h5>
+
+            <li class="sub-menu">
+                <!--<?php if (isset($menuActif) && $menuActif == 'Jeux') {echo 'class="active"';} ?> -->
+                <a
+                        {% if menuActif is defined and menuActif == 'Jeux' %} class="active"  {% endif %}
+                        href="index.php" ><i class="fa fa-desktop"></i>
+                    <span>Jeux vidéos</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{path('jeux_afficher')}}">Jeux</a></li> {# href="index.php?uc=gererJeux&action=afficherJeux" #}
+                    <li><a href="{{path('genres_afficher')}}">Genres</a></li> {# href="index.php?uc=gererGenres&action=afficherGenres" #}
+                    <li><a href="{{path('plateformes_afficher')}}">Plateformes</a></li> {# href="index.php?uc=gererPlateformes&action=afficherPlateformes" #}
+                    <li><a href="{{path('marques_afficher')}}">Marques</a></li> {# href="index.php?uc=gererMarques&action=afficherMarques" #}
+                    <li><a href="{{path('pegis_afficher')}}">Pegi</a></li> {# href="index.php?uc=gererPegis&action=afficherPegis" #}
+                    <li><a href="{{path('personnes_afficher')}}">Personnes</a></li> {# href="index.php?uc=gererPersonnes&action=afficherPersonnes" #}
+                    <li><a href="{{path('tournois_afficher')}}">Tournois</a></li> {# href="index.php?uc=gererTournois&action=afficherTournois" #}
+                    <li><a href="{{path('equipements_afficher')}}">Equipements</a></li> {# href="index.php?uc=gererEquipements&action=afficherEquipements" #}
+                    <li><a href="{{path('formats_afficher')}}">Formats</a></li> {# href="index.php?uc=gererFormats&action=afficherFormats" #}
+                    <li><a href="{{path('categories_afficher')}}">Categories</a></li> {# href="index.php?uc=gererCategories&action=afficherCategories" #}
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a
+                        {% if menuActif is defined and menuActif == 'Clubs' %} class="active"  {% endif %}
+                        href="javascript:;">
+                    <i class="fa fa-group"></i>
+                    <span>Clubs d'activités</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{path('accueil')}}">sous-menu 1</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 2</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 3</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 4</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 5</a></li> {# href="index.php" #}
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a
+                        {% if menuActif is defined and menuActif == 'Formations' %} class="active"  {% endif %}
+                        href="javascript:;">
+                    <i class="fa fa-th"></i>
+                    <span>Formations</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{path('accueil')}}">sous-menu 1</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 2</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 3</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 4</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 5</a></li> {# href="index.php" #}
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a
+                        {% if menuActif is defined and menuActif == 'Membres' %} class="active"  {% endif %}
+                        href="javascript:;">
+                    <i class="fa fa-user-md"></i>
+                    <span>Membres</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{path('accueil')}}">sous-menu 1</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 2</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 3</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 4</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 5</a></li> {# href="index.php" #}
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a
+                        {% if menuActif is defined and menuActif == 'Intervenants' %} class="active"  {% endif %}
+                        href="javascript:;">
+                    <i class="fa fa-smile-o"></i>
+                    <span>Intervenants</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{path('accueil')}}">sous-menu 1</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 2</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 3</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 4</a></li> {# href="index.php" #}
+                    <li><a href="{{path('accueil')}}">sous-menu 5</a></li> {# href="index.php" #}
+                </ul>
+            </li>
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+{# {% endblock %}#}

@@ -1,0 +1,98 @@
+div.conteneur{
+    width : 100%;
+    display : flex;
+    flex-flow : row nowrap;
+}
+
+div.conteneur div.separateur{
+    display : flex;
+    flex-grow: 1;
+}
+
+div.conteneur div.affichageTournoi{
+    flex-flow: column nowrap;
+    border-right: 1px solid grey;
+    width : 60%;
+}
+
+div.conteneur div.affichageTournoi table{
+    flex-grow: 1;
+    text-align : center;
+}
+
+div.conteneur div.affichageTournoi table th{
+    text-align : center;
+}
+
+div.conteneur div.affichageTournoi .grosTitre {
+    margin : 10px;
+}
+
+div.conteneur div.affichageTournoi .btnCreer{
+    border : solid 1px grey;
+    box-shadow: 2px 2px 2px rgb(23, 175, 165);
+    color : #4ECDC4;
+    background-color : white;
+    font-size : 12pt;
+}
+
+div.affichageGestionTournoi {
+    flex-flow : column nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 40%;
+}
+
+div.affichageGestionTournoi div{
+    display : flex;
+    width : 90%;
+    margin : 0;
+    padding:0
+}
+
+div.affichageGestionTournoi form{
+    width : 90%;
+    display: flex;
+    flex-flow : column nowrap;
+    justify-content: center;
+    align-items : center;
+    margin : 0;
+    padding: 0;
+}
+
+div.affichageGestionTournoi form div{
+    display : flex;
+    width : 100%;
+    margin : 0;
+    padding:0
+}
+
+div.affichageGestionTournoi div .titreAction{
+    font-size : 16pt; 
+    color : #4ECDC4;
+}
+
+div.affichageGestionTournoi div .libelle{
+    width : 30%;
+    color : #4ECDC4;
+    font-size : 12pt;
+}
+
+
+
+div.affichageGestionTournoi div .libelle button.btnValidation{
+    background-color : #4ECDC4;
+    color : white;
+    border : gray;
+    box-shadow: 2px 2px 2px gray;
+    width: 100%;
+}
+
+div.affichageGestionTournoi div .info{
+    width : 70%;
+}
+
+div.affichageGestionTournoi div .info input, select{
+    width : 100%;
+}
