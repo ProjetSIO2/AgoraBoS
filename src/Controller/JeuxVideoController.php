@@ -20,7 +20,7 @@ class JeuxVideoController extends AbstractController
      * @param $refJeuNotif  positionné si mise à jour dans la vue
      * @param $notification  pour notifier la mise à jour dans la vue
      */
-    private function afficherJeuxVideo(PdoJeux $db, int $refJeuModif, int $refJeuNotif, string $notification ) {
+    private function afficherJeuxVideo(PdoJeux $db, string $refJeuModif, string $refJeuNotif, string $notification ) {
         $tbJeuxVideo = $db->getLesJeuxVideo();
         $tbGenres  = $db->getLesGenres();
         $tbPlateformes  = $db->getLesPlateformes();
@@ -46,7 +46,7 @@ class JeuxVideoController extends AbstractController
     {
         if ($session->has('idUtilisateur')) {
             $db = PdoJeux::getPdoJeux();
-            return $this->afficherJeuxVideo($db, -1, -1, 'rien');
+            return $this->afficherJeuxVideo($db, '-1', '-1', 'rien');
         } else {
             return $this->render('connexion.html.twig');
         }
@@ -62,7 +62,7 @@ class JeuxVideoController extends AbstractController
             $refJeuNotif = $db->ajouterJeuVideo($request->request->get('txtRefJeu'), $request->request->get('lstPlateformes'), $request->request->get('lstPegis'), $request->request->get('lstGenres'), $request->request->get('lstMarques'), $request->request->get('txtNom'), $request->request->get('txtPrix'), $request->request->get('txtDateParution'));
             $notification = 'Ajouté';
         }
-        return $this->afficherJeuxVideo($db, -1,  $refJeuNotif, $notification);
+        return $this->afficherJeuxVideo($db, '-1',  $refJeuNotif, $notification);
     }
 
     /**
@@ -71,7 +71,7 @@ class JeuxVideoController extends AbstractController
     public function demanderModifier(SessionInterface $session, Request $request)
     {
         $db = PdoJeux::getPdoJeux();
-        return $this->afficherJeuxVideo($db, $request->request->get('txtRefJeu'),  -1, 'rien');
+        return $this->afficherJeuxVideo($db, $request->request->get('txtRefJeu'),  '-1', 'rien');
     }
 
     /**
@@ -81,7 +81,7 @@ class JeuxVideoController extends AbstractController
     {
         $db = PdoJeux::getPdoJeux();
         $db->modifierJeuVideo($request->request->get('txtRefJeu'), $request->request->get('lstPlateformes'), $request->request->get('lstPegis'), $request->request->get('lstGenres'), $request->request->get('lstMarques'), $request->request->get('txtNom'), $request->request->get('txtPrix'), $request->request->get('txtDateParution'));
-        return $this->afficherJeuxVideo($db, -1,  $request->request->get('txtRefJeu'), 'Modifié');
+        return $this->afficherJeuxVideo($db, '-1',  $request->request->get('txtRefJeu'), 'Modifié');
     }
 
     /**
@@ -95,6 +95,6 @@ class JeuxVideoController extends AbstractController
             'success', 'Le jeu vidéo a été supprimé'
         );
 
-        return $this->afficherJeuxVideo($db, -1,  -1, 'rien');
+        return $this->afficherJeuxVideo($db, '-1',  '-1', 'rien');
     }
 }

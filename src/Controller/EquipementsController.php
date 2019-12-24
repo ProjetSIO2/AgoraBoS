@@ -20,7 +20,7 @@ class EquipementsController extends AbstractController
      * @param $idEquipementNotif  positionné si mise à jour dans la vue
      * @param $notification  pour notifier la mise à jour dans la vue
      */
-    private function afficherEquipements(PdoJeux $db, int $idEquipementModif, int $idEquipementNotif, string $notification ) {
+    private function afficherEquipements(PdoJeux $db, string $idEquipementModif, string $idEquipementNotif, string $notification) {
         $tbEquipements  = $db->getLesEquipements();
         return $this->render('lesEquipements.html.twig', array(
             'menuActif' => 'Jeux',
@@ -38,7 +38,7 @@ class EquipementsController extends AbstractController
     {
         if ($session->has('idUtilisateur')) {
             $db = PdoJeux::getPdoJeux();
-            return $this->afficherEquipements($db, -1, -1, 'rien');
+            return $this->afficherEquipements($db, '-1', '-1', 'rien');
         } else {
             return $this->render('connexion.html.twig');
         }
@@ -54,7 +54,7 @@ class EquipementsController extends AbstractController
             $idEquipementNotif = $db->ajouterEquipement($request->request->get('txtIdEquipement'), $request->request->get('txtLibEquipement'));
             $notification = 'Ajouté';
         }
-        return $this->afficherEquipements($db, -1,  $idEquipementNotif, $notification);
+        return $this->afficherEquipements($db, '-1',  $idEquipementNotif, $notification);
     }
 
     /**
@@ -63,7 +63,7 @@ class EquipementsController extends AbstractController
     public function demanderModifier(SessionInterface $session, Request $request)
     {
         $db = PdoJeux::getPdoJeux();
-        return $this->afficherEquipements($db, $request->request->get('txtIdEquipement'),  -1, 'rien');
+        return $this->afficherEquipements($db, $request->request->get('txtIdEquipement'),  '-1', 'rien');
     }
 
     /**
@@ -73,7 +73,7 @@ class EquipementsController extends AbstractController
     {
         $db = PdoJeux::getPdoJeux();
         $db->modifierEquipement($request->request->get('txtIdEquipement'), $request->request->get('txtLibEquipement'));
-        return $this->afficherEquipements($db, -1,  $request->request->get('txtIdEquipement'), 'Modifié');
+        return $this->afficherEquipements($db, '-1',  $request->request->get('txtIdEquipement'), 'Modifié');
     }
 
     /**
@@ -87,6 +87,6 @@ class EquipementsController extends AbstractController
             'success', "L'équipement a été supprimé"
         );
 
-        return $this->afficherEquipements($db, -1,  -1, 'rien');
+        return $this->afficherEquipements($db, '-1',  '-1', 'rien');
     }
 }
