@@ -20,79 +20,76 @@
                 </tr>
                 </thead>
                 <tbody>
-				{{ include('messages.html.twig') }}
-				
-                <!-- formulaire pour ajouter un nouveau genre-->
-                <tr>
-                    <form action="{{path('genres_ajouter')}}" method="post"> {# action="index.php?uc=gererGenres" #}
-                        <td>Nouveau</td>
-                        <td>
-                            <input type="text" id="txtLibGenre" name="txtLibGenre" size="24" required minlength="4"  maxlength="24"  placeholder="Libellé" title="De 4 à 24 caractères"  />
-                        </td>
-                        <td>
-                            <!--<?php afficherListe($tbMembres, 'lstMembre', 1, ''); ?>-->
-                            <!--  faire un include à la place de l'appel de fonction en PHP -->
-                            <!-- Set permet de définir des variables en Twig -->
-                            {% set tbObjets, name, size, idSelect = tbMembres, 'lstPersonnes', 1, '' %}
-                            {{ include('liste.html.twig') }}
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="ajouterNouveauGenre" title="Enregistrer nouveau genre"><i class="fa fa-save"></i></button>
-                            <button class="btn btn-info btn-xs" type="reset" title="Effacer la saisie"><i class="fa fa-eraser"></i></button>
-                        </td>
-                    </form>
-                </tr>
+                    {{ include('messages.html.twig') }}
 
-                {% for key, genre in tbGenres %}
-                <!-- En PHP : foreach ($tbGenres as $genre) -->
+                    <!-- formulaire pour ajouter un nouveau genre-->
                     <tr>
-
-                        <!-- formulaire pour modifier et supprimer les genres-->
-                        <form method="post"> {# action="index.php?uc=gererGenres" #}
-                            <td>{{ genre.identifiant }}<input type="hidden"  name="txtIdGenre" value="{{ genre.identifiant }}" /></td>
+                        <form action="{{path('genres_ajouter')}}" method="post"> {# action="index.php?uc=gererGenres" #}
+                            <td>Nouveau</td>
                             <td>
-                                {% if genre.identifiant != idGenreModif %}
-                                {{ genre.libelle }}
-                                <!-- echo $genre->libelle; -->
+                                <input type="text" id="txtLibGenre" name="txtLibGenre" size="24" required minlength="4"  maxlength="24"  placeholder="Libellé" title="De 4 à 24 caractères"  />
                             </td>
                             <td>
-                                {{ genre.gerantGenre }}
+                                <!--<?php afficherListe($tbMembres, 'lstMembre', 1, ''); ?>-->
+                                <!--  faire un include à la place de l'appel de fonction en PHP -->
+                                <!-- Set permet de définir des variables en Twig -->
+                                {% set tbObjets, name, size, idSelect = tbMembres, 'lstPersonnes', 1, '' %}
+                                {{ include('liste.html.twig') }}
                             </td>
                             <td>
-                                {{genre.nbJeuxGenre}}
+                                0
                             </td>
                             <td>
-                                {% if notification != 'rien' and genre.identifiant == idGenreNotif %}
-                                    <button class="btn btn-success btn-xs" formaction="{{path('genres_afficher')}}" ><i class="fa fa-check"></i> {{ notification }}</button>
-                                {% endif %}
-                                <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="demanderModifierGenre" title="Modifier" formaction="{{path('genres_demanderModifier')}}" ><i class="fa fa-pencil"></i></button> {# Ajout formaction #}
-                                <button class="btn btn-danger btn-xs" type="submit" name="cmdAction" value="supprimerGenre" title="Supprimer" formaction="{{path('genres_supprimer')}}" onclick="return confirm('Voulez-vous vraiment supprimer ce genre ?');"><i class="fa fa-trash-o "></i></button> {# Ajout formaction #}
+                                <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="ajouterNouveauGenre" title="Enregistrer nouveau genre"><i class="fa fa-save"></i></button>
+                                <button class="btn btn-info btn-xs" type="reset" title="Effacer la saisie"><i class="fa fa-eraser"></i></button>
                             </td>
-                            {% else %}
-                                <input type="text" id="txtLibGenre" name="txtLibGenre" size="24" required minlength="4"  maxlength="24"   value="{{ genre.libelle }}" />
-                                </td>
-                                <td>
-                                    <!--<?php afficherListe($tbMembres, 'lstMembre', 1, $genre->idSpecialiste); ?>-->
-                                    {% set tbObjets, name, size, idSelect = tbMembres, 'lstPersonnes', 1, genre.idGerant %}
-                                    {{ include('liste.html.twig') }}
-                                </td>
-                                <td>
-                                    {{ genre.nbJeuxGenre }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="validerModifierGenre" title="Enregistrer" formaction="{{path('genres_validerModifier')}}" ><i class="fa fa-save"></i></button> {# Ajout formaction #}
-                                    <button class="btn btn-info btn-xs" type="reset" title="Effacer la saisie"><i class="fa fa-eraser"></i></button>
-                                    <button class="btn btn-warning btn-xs" type="submit" name="cmdAction" value="annulerModifierGenre" title="Annuler" formaction="{{path('genres_afficher')}}" ><i class="fa fa-undo"></i></button> {# Ajout formaction #}
-                                </td>
-                            {% endif %}
-
                         </form>
-
                     </tr>
-                {% endfor %}
+
+                    {% for key, genre in tbGenres %}
+                    <!-- En PHP : foreach ($tbGenres as $genre) -->
+                        <tr>
+                            <!-- formulaire pour modifier et supprimer les genres-->
+                            <form method="post"> {# action="index.php?uc=gererGenres" #}
+                                <td>{{ genre.identifiant }}<input type="hidden"  name="txtIdGenre" value="{{ genre.identifiant }}" /></td>
+                                <td>
+                                {% if genre.identifiant != idGenreModif %}
+                                    {{ genre.libelle }}
+                                    {# echo $genre->libelle; #}
+                                    </td>
+                                    <td>
+                                        {{ genre.gerantGenre }}
+                                    </td>
+                                    <td>
+                                        {{genre.nbJeuxGenre}}
+                                    </td>
+                                    <td>
+                                        {% if notification != 'rien' and genre.identifiant == idGenreNotif %}
+                                            <button class="btn btn-success btn-xs" formaction="{{path('genres_afficher')}}" ><i class="fa fa-check"></i> {{ notification }}</button>
+                                        {% endif %}
+                                        <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="demanderModifierGenre" title="Modifier" formaction="{{path('genres_demanderModifier')}}" ><i class="fa fa-pencil"></i></button> {# Ajout formaction #}
+                                        <button class="btn btn-danger btn-xs" type="submit" name="cmdAction" value="supprimerGenre" title="Supprimer" formaction="{{path('genres_supprimer')}}" onclick="return confirm('Voulez-vous vraiment supprimer ce genre ?');"><i class="fa fa-trash-o "></i></button> {# Ajout formaction #}
+                                    </td>
+                                {% else %}
+                                        <input type="text" id="txtLibGenre" name="txtLibGenre" size="24" required minlength="4"  maxlength="24"   value="{{ genre.libelle }}" />
+                                    </td>
+                                    <td>
+                                        <!--<?php afficherListe($tbMembres, 'lstMembre', 1, $genre->idSpecialiste); ?>-->
+                                        {% set tbObjets, name, size, idSelect = tbMembres, 'lstPersonnes', 1, genre.idGerant %}
+                                        {{ include('liste.html.twig') }}
+                                    </td>
+                                    <td>
+                                        {{ genre.nbJeuxGenre }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" type="submit" name="cmdAction" value="validerModifierGenre" title="Enregistrer" formaction="{{path('genres_validerModifier')}}" ><i class="fa fa-save"></i></button> {# Ajout formaction #}
+                                        <button class="btn btn-info btn-xs" type="reset" title="Effacer la saisie"><i class="fa fa-eraser"></i></button>
+                                        <button class="btn btn-warning btn-xs" type="submit" name="cmdAction" value="annulerModifierGenre" title="Annuler" formaction="{{path('genres_afficher')}}" ><i class="fa fa-undo"></i></button> {# Ajout formaction #}
+                                    </td>
+                                {% endif %}
+                            </form>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 

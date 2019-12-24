@@ -52,7 +52,7 @@ class GenresController extends AbstractController
     public function ajouter(SessionInterface $session, Request $request)
     {
         $db = PdoJeux::getPdoJeux();
-        if (!empty($request->request->get('txtLibGenre'))) {
+        if (!empty($request->request->get('txtLibGenre')) && !empty($request->request->get('lstPersonnes'))) {
             $idGenreNotif = $db->ajouterGenre($request->request->get('txtLibGenre'), $request->request->get('lstPersonnes'));
             $notification = 'Ajouté';
         }
