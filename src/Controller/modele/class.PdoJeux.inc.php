@@ -1008,12 +1008,13 @@ class PdoJeux {
     public function getLeTournoi($annee, $numTournoi){
         try {
             // Requete tournoi
-            $requeteTournoi = PdoJeux::$monPdo->prepare('SELECT T.anneeTournoi, T.refJeu, T.idJuge, T.idFormat, T.numTournoi, T.nomTournoi, JV.nom as nomJeu, PL.libPlateforme, F.nomFormat, gain, 
+            $requeteTournoi = PdoJeux::$monPdo->prepare('SELECT T.anneeTournoi, T.refJeu, T.idJuge, T.idFormat, T.numTournoi, T.nomTournoi, JV.nom as nomJeu, PL.libPlateforme, F.nomFormat, C.libCategorie, gain, 
                                                         concat(P.nomPersonne," ",P.prenomPersonne) AS juge, T.nbParticipants
                                                         FROM tournoi AS T
                                                         NATURAL JOIN jeu_video AS JV
                                                         JOIN plateforme AS PL on JV.idPlateforme = PL.idPlateforme
                                                         NATURAL JOIN format AS F
+														NATURAL JOIN categorie AS C
                                                         JOIN personne AS P on T.idJuge = P.idPersonne
                                                         WHERE T.anneeTournoi = :annee and numTournoi = :numTournoi');
             $requeteTournoi->bindParam(':annee', $annee, PDO::PARAM_INT);
@@ -1066,8 +1067,8 @@ class PdoJeux {
 
     public function ajouterTournoi($objTournoi){
         try {
-            $requete_prepare = PdoJeux::$monPdo->prepare('INSERT INTO Tournoi (anneeTournoi, numTournoi, nomTournoi, nbParticipants, gain, refJeu, idFormat, idJuge)
-                                                        VALUES ( :annee, :numTournoi, :nomTournoi, :nbParticipants, :gain, :refJeu, :idFormat, :idJuge)');
+            $requete_prepare = PdoJeux::$monPdo->prepare('INSERT INTO Tournoi (anneeTournoi, numTournoi, nomTournoi, nbParticipants, gain, refJeu, idFormat, idJuge, idCategorie)
+                                                        VALUES ( :annee, :numTournoi, :nomTournoi, :nbParticipants, :gain, :refJeu, :idFormat, :idJuge, :idCategorie)');
             $requete_prepare->bindParam(':annee', $objTournoi->Annee, Pdo::PARAM_INT);
             $requete_prepare->bindParam(':numTournoi', $objTournoi->Numero, Pdo::PARAM_INT);
             $requete_prepare->bindParam(':nomTournoi', $objTournoi->NomTournoi, Pdo::PARAM_STR);
@@ -1076,6 +1077,7 @@ class PdoJeux {
             $requete_prepare->bindParam(':refJeu', $objTournoi->Jeu, Pdo::PARAM_STR);
             $requete_prepare->bindParam(':idFormat', $objTournoi->Format, Pdo::PARAM_INT);
             $requete_prepare->bindParam(':idJuge', $objTournoi->Juge, Pdo::PARAM_INT);
+			$requete_prepare->bindParam(':idCategorie', $objTournoi->Categorie, Pdo::PARAM_INT);
             $requete_prepare->execute();
 
             foreach ($objTournoi->Animateurs as $animateur) {
@@ -1116,7 +1118,7 @@ class PdoJeux {
     public function modifierTournoi($objTournoi){
         try {
             $requete_prepare = PdoJeux::$monPdo->prepare('UPDATE tournoi
-                                                            SET nomTournoi = :nomTournoi, nbParticipants = :nbParticipants, gain = :gain, refJeu = :refJeu, idFormat = :idFormat, idJuge = :idJuge
+                                                            SET nomTournoi = :nomTournoi, nbParticipants = :nbParticipants, gain = :gain, refJeu = :refJeu, idFormat = :idFormat, idJuge = :idJuge, idCategorie = :idCategorie
                                                             WHERE anneeTournoi = :annee and numTournoi = :numTournoi');
             $requete_prepare->bindParam(':annee', $objTournoi->Annee, Pdo::PARAM_INT);
             $requete_prepare->bindParam(':numTournoi', $objTournoi->Numero, Pdo::PARAM_INT);
@@ -1126,6 +1128,7 @@ class PdoJeux {
             $requete_prepare->bindParam(':refJeu', $objTournoi->Jeu, Pdo::PARAM_STR);
             $requete_prepare->bindParam(':idFormat', $objTournoi->Format, Pdo::PARAM_INT);
             $requete_prepare->bindParam(':idJuge', $objTournoi->Juge, Pdo::PARAM_INT);
+			$requete_prepare->bindParam(':idCategorie', $objTournoi->Categorie, Pdo::PARAM_INT);
             $requete_prepare->execute();
 
             // Suppression des animateurs déjà enregistrés
